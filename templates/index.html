@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TissueLens · Histology explorer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+<header><a class="brand" href="/">✳ <span>TissueLens</span></a><span class="research">RESEARCH WORKSPACE</span></header>
+<main>
+  <section class="hero"><div class="eyebrow">LUNG & COLON / HISTOPATHOLOGY</div>
+    <h1>A closer look<br>at tissue<span>.</span></h1>
+    <p>Explore microscopic patterns with a five-class deep learning model. One tissue patch. A clearer view of its predicted class.</p>
+    <div class="chips"><span>5 tissue classes</span><span>TensorFlow CNN</span><span>Flask inference</span></div>
+  </section>
+  <div class="status"><span id="status-dot" class="dot"></span><strong id="model-status">Checking model…</strong><span>EfficientNetB0 · 224 × 224 RGB</span></div>
+  <div id="scope-warning" class="notice" hidden>Exploratory image split: related augmented images may overlap between sets. Test scores do not establish performance on new patients.</div>
+  <section class="workspace">
+    <article class="card"><div class="step">01 <span>YOUR IMAGE</span></div><h2>Upload a tissue patch</h2>
+      <p class="muted">Choose a clear microscopy image in JPEG or PNG format.</p>
+      <label class="drop-zone" id="drop-zone" for="image-input"><span class="upload-icon">↥</span><strong>Drop your image here</strong><span>or click to browse · up to 10 MB</span>
+        <input id="image-input" type="file" accept="image/jpeg,image/png"></label>
+      <div id="preview-wrap" hidden><img id="preview" alt="Uploaded tissue patch preview"><div class="image-meta"><span id="file-name"></span><button id="clear" class="text-button" type="button">Remove</button></div></div>
+      <button id="analyze" class="primary" disabled>Analyze tissue patch <span>↗</span></button>
+      <p class="privacy">Images are processed in memory and are not saved by this app.</p>
+    </article>
+    <article class="card"><div class="step">02 <span>MODEL OUTPUT</span></div><h2>Explore the prediction</h2>
+      <div id="empty-result" class="empty"><div class="pattern">◎</div><h3>Patterns, waiting to be explored.</h3><p>Your class scores will appear here<br>after you analyze an image.</p></div>
+      <div id="result" hidden><p class="eyebrow">HIGHEST-SCORING CLASS</p><h3 id="prediction"></h3><div id="scores"></div><p id="timing" class="muted"></p><button id="download" class="secondary">Download result ↓</button><p class="privacy">Scores are not calibrated probabilities of disease. Unrelated images can also receive high scores.</p></div>
+      <p id="error" class="error" role="alert" hidden></p><p id="activity" class="muted" role="status" aria-live="polite"></p>
+    </article>
+  </section>
+  <section class="class-section"><h2>Five classes. Two organs.</h2><div class="class-list">{% for key, label in labels.items() %}<span>{{ label }}</span>{% endfor %}</div></section>
+  <footer><strong>Built for research & learning.</strong><p>This tool is not validated for clinical diagnosis. Use histopathology tissue patches, not CT scans, X-rays or photographs. Uploaded images are resized for classification; this app does not locate tumors within a scan.</p></footer>
+</main>
+</body></html>

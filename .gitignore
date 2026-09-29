@@ -1,0 +1,8 @@
+.venv/
+.webdeps/
+__pycache__/
+artifacts*/
+lung_colon_image_set/
+*.h5
+*.keras
+.streamlit/secrets.toml
