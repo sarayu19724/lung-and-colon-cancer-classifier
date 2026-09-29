@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "classes": [
+    "colon_aca",
+    "colon_n",
+    "lung_aca",
+    "lung_n",
+    "lung_scc"
+  ],
+  "image_size": 224,
+  "preprocessing": "pillow_rgb_bilinear_0_255",
+  "architecture": "EfficientNetB0",
+  "created_at": "2026-09-28T18:30:11.580520+00:00",
+  "seed": 42,
+  "evaluation_scope": "exploratory image split",
+  "split_counts": {
+    "train": {
+      "colon_n": 3515,
+      "colon_aca": 3510,
+      "lung_scc": 3503,
+      "lung_n": 3495,
+      "lung_aca": 3488
+    },
+    "validation": {
+      "lung_n": 740,
+      "colon_n": 755,
+      "lung_scc": 740,
+      "lung_aca": 747,
+      "colon_aca": 754
+    },
+    "test": {
+      "colon_n": 730,
+      "lung_aca": 756,
+      "lung_n": 765,
+      "lung_scc": 757,
+      "colon_aca": 736
+    }
+  },
+  "duplicate_images": 1279,
+  "training_complete": true,
+  "selected_stage": "fine_tune"
+}
