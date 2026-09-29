@@ -45,7 +45,7 @@ except Exception:
     logging.exception("Streamlit model loading failed")
     st.stop()
 
-st.success("Trained model loaded · CPU inference supported")
+
 left, right = st.columns(2, gap="large")
 payload = None
 with left:
